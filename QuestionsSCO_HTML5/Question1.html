@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Q-1 Math Question</title>
+</head>
+<body>
+<header>
+<h1>Question 1</h1>
+</header>
+<p>Given points (x1,y1) and (x2,y2) select the formula to find the equation of the given line</p>
+
+<form action = "Question2.html" method="get">
+<input type="radio" name="q1" value ="1">
+<math xmlns='http://www.w3.org/1998/Math/MathML'>
+<mi>y</mi>
+  <mo>=</mo>
+<mi>m</mi>
+  <mi>x</mi>
+  <mo>+</mo>
+  <mi>b</mi>
+</math>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+<input type="radio" name="q1" value="2"><math xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msup>
+   <mrow>
+    <mo>(</mo>
+    <mrow>
+     <mi>x</mi>
+     <mo>-</mo>
+     <mi>h</mi>
+    </mrow>
+    <mo>)</mo>
+   </mrow>
+   <mn>2</mn>
+  </msup>
+  <mo>+</mo>
+  <msup>
+   <mrow>
+    <mo>(</mo>
+    <mrow>
+     <mi>y</mi>
+     <mo>-</mo>
+     <mi>k</mi>
+    </mrow>
+    <mo>)</mo>
+   </mrow>
+   <mn>2</mn>
+  </msup>
+ <mo>=</mo>
+<mi>r</mi>
+ <mn>2</mn>
+ </mrow>
+</math>
+<img src="C:\Users\SwathiBala\workspace\280-Lab1\280_q1_img.gif" alt="question1 image"><br><br>
+
+<input type="radio" name="q1" value="3"> <math xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>y</mi>
+  <mo>-</mo>
+  <mi>y1</mi>
+<mo>=</mo>
+<mi>m</mi>
+<mo>(</mo>
+    <mrow>
+     <mi>x</mi>
+     <mo>-</mo>
+     <mi>x1</mi>
+    </mrow>
+    <mo>)</mo>
+ </mrow>
+</math> &nbsp; &nbsp;
+
+<input type="radio" name="q1" value="4"><math xmlns='http://www.w3.org/1998/Math/MathML' >
+  <mi>y</mi>
+  <mo>-</mo>
+  <mi>y2</mi>
+<mo>=</mo>
+
+ <mfrac>
+<mrow>
+<mi>y2</mi>
+  <mo>-</mo>
+  <mi>y1</mi>
+</mrow>
+<mrow>
+<mi>x2</mi>
+  <mo>-</mo>
+  <mi>x1</mi>
+</mrow>
+</mfrac>
+
+<mrow>
+<mo>(</mo>
+<mi>x</mi>
+  <mo>-</mo>
+  <mi>x2</mi>
+<mo>)</mo>
+</mrow>
+
+</math>
+
+<input type="hidden" name="marks" id="marks" data-name="marks">
+<br><br>
+<footer>
+<button type="submit" onclick= "calculateScore()">Submit & next question</button>&nbsp;&nbsp;
+<button type="button" onclick="clearOption()">Cancel & clear Selection</button></footer>
+</form>
+<script>
+/* var fType = getUrlVars()["lastname"];
+alert(fType); */
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  
+function calculateScore()
+{
+var selectedValue = document.forms[0];
+var txt = '';
+var i;
+for (i = 0; i < selectedValue.length; i++) {
+    if (selectedValue[i].checked) {
+        txt = txt + selectedValue[i].value + " ";
+    }
+}
+var datavalue =document.getElementById("marks")
+if(parseInt(txt)==4)
+	{
+	
+	document.getElementById(datavalue.getAttribute("data-name")).value="a1-";
+	}
+else
+{
+	document.getElementById(datavalue.getAttribute("data-name")).value="a0-";
+	}
+}
+
+function clearOption()
+{
+	var selectedValue = document.forms[0];
+	var i;
+	for (i = 0; i < selectedValue.length; i++) {
+	 document.forms[0][i].checked = false;
+	}
+}
+  
+</script>
+
+</body>
+</html>

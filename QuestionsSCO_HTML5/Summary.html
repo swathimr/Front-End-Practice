@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Summary Page</title>
+</head>
+<body>
+<header>
+<h1 align="center">Score Card</h1>
+</header>
+<hr>
+<details>
+  <summary>Quantitative section</summary>
+  <p>Number of Questions answered : 2</p>
+  <p>Number of correct answers :<span id="qans"></span> </p>
+  <p>Score :<span id="qscore"></span></p>
+</details>
+
+<details>
+  <summary>Reading section</summary>
+  <p>Number of Questions answered : 2</p>
+  <p>Number of correct answers :<span id="rans"></span> </p>
+  <p>Score :<span id="rscore"></span> </p>
+</details>
+
+<details>
+  <summary>Audio/Video section</summary>
+  <p>Number of Questions answered : 1</p>
+  <p>Number of correct answers :<span id="vans"></span> </p>
+  <p>Score :<span id="vscore"></span> </p>
+</details><br><br>
+<div style="text-align:center;"><b>Thank you !!!</b></div><br><br>
+<form action="login.html">
+<footer style="text-align:center;">
+<button type="submit">Finish</button>
+</footer>
+</form>
+<script>
+var mark = getUrlVars()["marks"];
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  
+var trimmedVal=mark.split("-");
+
+quantScoreDisplay();
+videoScoreDisplay();
+readScoreDisplay();
+
+function quantScoreDisplay()
+{
+	if(trimmedVal[0]=="a1" && trimmedVal[1]=="b1")
+		{
+			document.getElementById("qscore").innerHTML=100;
+			document.getElementById("qans").innerHTML=2;
+		}
+	else if(trimmedVal[0]=="a1" || trimmedVal[1]=="b1")
+		{
+		document.getElementById("qscore").innerHTML=50;
+		document.getElementById("qans").innerHTML=1;
+		}
+	else
+	{
+		document.getElementById("qscore").innerHTML=0;
+		document.getElementById("qans").innerHTML="0";
+	}
+}
+
+
+function readScoreDisplay()
+{
+	
+	if(trimmedVal[2]=="c11")
+		{
+		document.getElementById("rscore").innerHTML=100;
+		document.getElementById("rans").innerHTML=2;
+		}
+	else if(trimmedVal[2]=="c01" || trimmedVal[2]=="c10")
+		{
+		document.getElementById("rscore").innerHTML=50+"(partial)";
+		document.getElementById("rans").innerHTML=1;
+		}
+	else
+	{
+		document.getElementById("rscore").innerHTML="0";
+		document.getElementById("rans").innerHTML="0";
+	}
+}
+
+
+function videoScoreDisplay()
+{
+	if(trimmedVal[3]=="d1")
+		{
+		document.getElementById("vscore").innerHTML=100;
+		document.getElementById("vans").innerHTML=1;
+		}
+	else
+	{
+		document.getElementById("vscore").innerHTML="0";
+		document.getElementById("vans").innerHTML="0";
+	}
+}
+</script>
+</body>
+</html>

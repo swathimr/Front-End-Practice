@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cosine Page</title>
+</head>
+<body>
+<header>
+<h1>Question 2</h1>
+</header>
+<p>Select cosine theorem formula</p><br> <br>
+
+<form action = "Question3.html" method="get">
+<input type="radio" name="q1" value="1"><math xmlns="http://www.w3.org/1998/Math/MathML">
+ 
+<mi>cos</mi>
+<mo>(</mo>
+<mo>&alpha;</mo>
+ <mo>&plusmn;</mo>
+<mo>&beta;</mo>
+<mo>)</mo>
+<mo>=</mo>
+<mi>cos</mi>
+<mo>&alpha;</mo>
+ <mi>cos</mi>
+<mo>&beta;</mo>
+<mo>&plusmn;</mo>
+<mi>sin</mi>
+<mo>&alpha;</mo>
+ <mi>sin</mi>
+<mo>&beta;</mo>
+</math>&nbsp; &nbsp;&nbsp;
+
+<input type="radio" name="q2" value="2"><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>sin</mi>
+<mo>(</mo>
+<mo>&alpha;</mo>
+ <mo>&plusmn;</mo>
+<mo>&beta;</mo>
+<mo>)</mo>
+<mo>=</mo>
+<mi>sin</mi>
+<mo>&alpha;</mo>
+ <mi>cos</mi>
+<mo>&beta;</mo>
+<mo>&plusmn;</mo>
+<mi>cos</mi>
+<mo>&alpha;</mo>
+ <mi>sin</mi>
+<mo>&beta;</mo>
+</math><br><br><br>
+
+<input type="radio" name="q2" value="3"> <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>sin</mi>
+<mo>&alpha;</mo>
+<mo>+</mo>
+<mi>sin</mi>
+<mo>&beta;</mo>
+<mo>=</mo>
+<mn>2</mn>
+ <mi>sin</mi>
+<mo>(</mo>
+ <mfrac>
+<mrow>
+<mo>&alpha;</mo>
+  <mo>+</mo>
+  <mo>&beta;</mo>
+</mrow>
+<mrow>
+  <mn>2</mn>
+</mrow>
+</mfrac>
+<mo>)</mo>
+<mi>cos</mi>
+<mo>(</mo>
+ <mfrac>
+<mrow>
+<mo>&alpha;</mo>
+  <mo>-</mo>
+  <mo>&beta;</mo>
+</mrow>
+<mrow>
+  <mn>2</mn>
+</mrow>
+</mfrac>
+<mo>)</mo>
+    </math>&nbsp; &nbsp;
+    
+<input type="radio" name="q2" value="4"><math xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>sin</mi>
+<mo>&alpha;</mo>
+<mo>-</mo>
+<mi>sin</mi>
+<mo>&beta;</mo>
+<mo>=</mo>
+<mn>2</mn>
+ <mi>cos</mi>
+<mo>(</mo>
+ <mfrac>
+<mrow>
+<mo>&alpha;</mo>
+  <mo>+</mo>
+  <mo>&beta;</mo>
+</mrow>
+<mrow>
+  <mn>2</mn>
+</mrow>
+</mfrac>
+<mo>)</mo>
+<mi>sin</mi>
+<mo>(</mo>
+ <mfrac>
+<mrow>
+<mo>&alpha;</mo>
+  <mo>-</mo>
+  <mo>&beta;</mo>
+</mrow>
+<mrow>
+  <mn>2</mn>
+</mrow>
+</mfrac>
+<mo>)</mo>
+    </math><br><br>
+<input type="hidden" name="marks" id="marks" data-name="marks"><br><br><br>
+<footer>
+<button type="submit" onclick= "calculateScore()">Submit & next question</button>&nbsp;&nbsp;
+<button type="button" onclick="clearOption()">Cancel & clear Selection</button></footer>
+</form>
+</body>
+<script>
+var mark = getUrlVars()["marks"];
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  
+function calculateScore()
+{
+var selectedValue = document.forms[0];
+var txt = '';
+var i;
+for (i = 0; i < selectedValue.length; i++) {
+    if (selectedValue[i].checked) {
+        txt = txt + selectedValue[i].value + " ";
+    }
+}
+var datavalue =document.getElementById("marks");
+if(parseInt(txt)==2)
+	{
+	document.getElementById(datavalue.getAttribute("data-name")).value=mark+"b1-";
+	}
+else
+{
+	document.getElementById(datavalue.getAttribute("data-name")).value=mark+"b0-";
+	}
+}
+
+function clearOption()
+{
+	var selectedValue = document.forms[0];
+	var i;
+	for (i = 0; i < selectedValue.length; i++) {
+	 document.forms[0][i].checked = false;
+	}
+}
+
+</script>
+</html>

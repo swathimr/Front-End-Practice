@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>English SCO Page</title>
+</head>
+<body>
+<header>
+<h1>Question 3<hr></h1>
+</header>
+<p>As per the latest twitter news,complete the article snippet given by </p><p>selecting appropriate choices for the blanks.</p>
+
+<p align="justify" style="margin-left: 30%;margin-right: 35%;"><cite>" Twitter wants more cash.The company announced two <mark><span id="option1">_____</span> </mark>million debt offerings in a filling today.,each with
+ a potential $100 increase provided that the sales are over subscribed..Assuming full tip,including the $100
+ million boosters <mark><span id="option2">_____</span></mark> will raise up to $1.5 billion with the two offerings."<br><br><br>source:http://techcrunch.com/2014/09/10/twitter-to-raise-up-to-1-5b-in-debt-offering/</cite>
+<form action="Question4.html" method="GET">
+<div align="left">
+<input type="radio" name="q3" value="$650" onclick="populateOption1()">Option 1 Mark 1 : $650 &nbsp; &nbsp;
+<input type="radio" name="q" value="Twitter" onclick="populateOption2()">Option 1 Mark 2 : Twitter<br>
+<input type="radio" name="q3" value="$550" onclick="populateOption1()">Option 2 Mark 1 : $550 &nbsp; &nbsp;
+<input type="radio" name="q" value="Google" onclick="populateOption2()">Option 2 Mark 2 : Google<br>
+<input type="radio" name="q3" value="$450" onclick="populateOption1()">Option 3 Mark 1 : $450 &nbsp; &nbsp;
+<input type="radio" name="q" value="Facebook" onclick="populateOption2()">Option 3 Mark 2 : Facebook<br><br><br>
+<input type="hidden" name="marks" id="marks" data-name="marks">
+<footer>
+<button type="submit" onclick= "calculateScore()">Submit & next question</button>&nbsp;&nbsp;
+<button type="button" onclick="clearOption()">Cancel & clear Selection</button></footer>
+</div>
+</form>
+
+<script>
+var mark = getUrlVars()["marks"];
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+
+function populateOption1()
+{
+var text1 = getRadioValue();
+document.getElementById("option1").value=text1
+document.getElementById("option1").innerHTML=text1;
+
+}
+
+function populateOption2()
+{
+//
+var text = getRadioValue1();
+document.getElementById("option2").value=text;
+document.getElementById("option2").innerHTML=text;
+}
+
+function getRadioValue()
+{
+	var selectedValue = document.forms[0];
+	var txt = '';
+	var i=0;
+
+	while(i<5)
+		{
+		 if (selectedValue[i].checked) {
+		        txt =selectedValue[i].value;
+		    	return txt;
+		 }
+		 else
+			 {
+			 i=i+2;
+			 }
+		}
+}
+
+function getRadioValue1()
+{
+	var selectedValue = document.forms[0];
+	var txt = '';
+	var i=1;
+	
+	while(i<6)
+		{
+		if (selectedValue[i].checked) {
+	        txt =selectedValue[i].value;
+	    	return txt;
+	 }
+	 else
+		 {
+		 i=i+2;
+		 }
+		}
+}
+
+function calculateScore()
+{
+	var markedOne=document.getElementById("option1").value;
+	var markedTwo = document.getElementById("option2").value;
+	var datavalue =document.getElementById("marks");
+	 if(markedOne=="$650" && markedTwo=="Twitter") 
+		{
+		document.getElementById(datavalue.getAttribute("data-name")).value=mark+"c11-";
+		}
+	 else if(markedOne=="$650" && markedTwo!="Twitter" || markedOne!="$650" && markedTwo=="Twitter")
+		{
+		document.getElementById(datavalue.getAttribute("data-name")).value=mark+"c10-";
+		}
+	else
+	{
+		document.getElementById(datavalue.getAttribute("data-name")).value=mark+"c00-";
+	}
+}
+
+function clearOption()
+{
+	var selectedValue = document.forms[0];
+	var i;
+	for (i = 0; i < selectedValue.length; i++) {
+	 document.forms[0][i].checked = false;
+	}
+}
+</script>
+</body>
+</html>

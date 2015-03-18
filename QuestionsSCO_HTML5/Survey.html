@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Survey Page</title>
+</head>
+<body>
+<header>
+<h1>Survey<hr></h1>
+
+</header>
+
+<p>How did you like the center?</p>
+<div>Comments:</div><textarea rows="4" cols="50" style="margin-top:-1%;margin-left:5%;"></textarea>
+<h3>Select Text Area Location:</h3>
+city:
+<input list="city" name="city">
+  <datalist id="city">
+  <option value="San jose">
+  <option value="San francisco">
+  <option value="Mountain View">
+  <option value="Palo Alto">
+</datalist>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Room Number:
+<input list="roomNumber" name="roomNumber">
+  <datalist id="roomNumber">
+  <option value="Room 337">
+  <option value="Room 210">
+  <option value="Room 110">
+  <option value="Room 410">
+</datalist><br><br><br>
+<br><br><br>
+
+<form action="Summary.html" method="GET">
+<input type="hidden" name="marks" id="marks">
+<!-- <button type="button" onclick="location.href='Summary.html' ">Submit & Get Score</button>&nbsp;&nbsp; -->
+<footer>
+<button type="submit">Submit & Get Score</button>&nbsp;&nbsp;
+<button type="submit">Skip & Get Score</button> </footer>
+</form>
+
+<script>
+
+var mark = getUrlVars()["marks"];
+document.getElementById("marks").value=mark;
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+
+</script>
+</body>
+</html>

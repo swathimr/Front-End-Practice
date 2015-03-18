@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Audio & Video SCO</title>
+</head>
+<body>
+<header>
+<h1>Question 4</h1>
+</header>
+<p>Watch the video and answer the following question.<br>
+What is the source as mentioned int he video?</p>
+<video width="500" height="350" autoplay controls style="margin-left:30%;margin-top:-5%;">
+<source src= "http://www.nasa.gov/sites/default/files/atoms/video/u_s_commercial_cargo_ship_departs_international_space_station_0.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video><br>
+<form action="Survey.html" method="GET">
+<div style="margin-top:-15%;">
+<input type="radio"  id="q4" name="q4" value="NASA.Gov">NASA.Gov &nbsp; &nbsp;
+<input type="radio" name="q4" value="Data.Gov">Data.Gov<br><br><br>
+<input type="radio" name="q4" value="Facebook">Facebook &nbsp; &nbsp;
+<input type="radio" name="q4" value="XYZ.net">XYZ.net <br><br><br><br>
+<input type="hidden" name="marks" id="marks">
+<footer>
+<button type="submit" onclick= "calculateScore()">Submit & next question</button>&nbsp;&nbsp;
+<button type="button" onclick="clearOption()">Cancel & clear Selection</button></footer>
+</div>
+</form>
+<script>
+
+var mark = getUrlVars()["marks"];
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  
+function calculateScore()
+{
+var selectedValue = document.forms[0];
+var txt = '';
+var i;
+for (i = 0; i < selectedValue.length; i++) {
+    if (selectedValue[i].checked) {
+        txt = txt + selectedValue[i].value + " ";
+        txt.toString();
+    }
+}
+
+var trimmedVal=txt.toLowerCase().split(".");
+
+if(trimmedVal[0]=='nasa')
+	{
+	document.getElementById("marks").value=mark+"d1";
+	}
+else
+	{
+	document.getElementById("marks").value=mark+"d0";
+	}
+}
+function clearOption()
+{
+	var selectedValue = document.forms[0];
+	var i;
+	for (i = 0; i < selectedValue.length; i++) {
+	 document.forms[0][i].checked = false;
+	}
+}
+</script>
+</body>
+</html>

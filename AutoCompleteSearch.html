@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AutoComplete Search</title>
+</head>
+<body>
+<h1>AutoComplete</h1>
+<hr>
+<input type="radio" name="radio" id="bookList" checked="checked" value="bookList"> BookList &nbsp;&nbsp;
+<input type="radio" name="radio" id="famousScientists" value="famousScientists"> Famous Scientist <br><br>
+<input type="text" name="search" id="search" size="48" onkeyup="searchFunction()">&nbsp;&nbsp;&nbsp;<input type="button" name="search" value = "search"><br>
+<select id="result" size="7" onchange="selectValue(this.selectedIndex)"><!-- <option selected = "selected"></option> --></select>
+
+<script>
+document.getElementById("result").style.visibility="hidden";
+function searchFunction()
+{
+	document.getElementById("result").options.length = 0;
+	document.getElementById("result").style.width="300";
+	var booklistRadio= document.getElementById("bookList").checked;
+	var famousScientistRadio = document.getElementById("famousScientists").checked;
+	
+	var books = ["The Pencil: A History of Design and Circumstance",
+	             "Mirror Worlds",
+	             "A New Kind of Science",
+	             "Godel,Escher,Bach",
+	             "Hackers & Painters",
+	             "The Design of Everyday Things",
+	             "The Soul of a New Machine",
+	             "The Codebreakers",
+	             "Longitude",
+	             "The Making of the Atomic Bomb",
+	             "Technology Paradise Lost",
+	             "Information Systems Today",
+	             "IT Project Portfolio Management",
+	             "Management of Information Security",
+	             "SCADA",
+	             "J.D.Edwards One World Xe",
+	             "Elementary statistics",
+	             "Careers in Information Technology",
+	             "Key Skills Survival Guide",
+	             "Hitotsubashi on knowledge management",
+	             "The Coming Convergence",
+	             "The Serendipity Machine",
+	             "Byte wars",
+	             "Republic.com 2.0",
+	             "The Internet Galaxy",
+	             "Information systems",
+	             "Fundamentals of Information Systems",
+	             "Here Comes Everybody",
+	             "The World Is Flat",
+	             "The Virtual Community",
+	             "The Road Ahead",
+	             "Semantics in Business Systems",
+	             "The power of identity",
+	             "Being digital",
+	             "Managing Information Technology",
+	             "Business",
+	             "OutSource",
+	             "Spirit of the Web",
+	             "The collapse of Soviet communism",
+	             "E-Governance",
+	             "Imparare XML in 6 ore",
+	             "Techgnosis",
+	             "The Big Switch: Rewiring the World, from Edison to Google",
+	             "Business Driven Technology",
+	             "Database Systems",
+	             "Infotopia",
+	             "Living at light speed",
+	             "Jargon watch",
+	             "Empire of Mind",
+	             "Silicon Snake Oil",
+	             "Information and biological revolution",
+	             "Enterprise Integration and Modeling",
+	             "Internet",
+	             "This explains everything",
+	             "YOU ARE STARDUST",
+	             "ON LOOKING",
+	             "WILD ONES",
+	             "THINKING IN NUMBERS",
+	             "SMARTER THAN YOU THINK",
+	             "COSMIC APPRENTICE",
+	             "SOCIAL",
+	             "Gulp",
+	             "Wonders of the Universe",
+	             "Save Our Science",
+	             "The Elements Of Elucid",
+	             "The Space Book",
+	             "An Appetite For Wonder",
+	             "The Age of Edison",
+	             "The Human Face Of BigData",
+	             "Pythin For Data Analysis",
+	             "The Art of R Programming",
+	             "Predictive Analytics",
+	             "Hadoop: The Definitive Guide",
+	             "Discovering Statistics Using R",
+	             "Learning Spark: Lightning-Fast Big Data Analysis",
+	             "Learning From Data",
+	             "Big Data,Data Mining and Machine Learning",
+	             "Big Data Opportunities and challenges",
+	             "Harness oil and Gas BIG DATA with Analytics",
+	             "Think Bigger",
+	             "Big Data and Internet Of things",
+	             "Big Data Now: 2012 Edition",
+	             "101 Insanely Great Resources",
+	             "Bad Data Handbook: Cleaning Up The Data",
+	             "Planning for Big Data",
+	             "Doing Data Science",
+	             "Big Data For Dummies",
+	             "Data Analysis with Open Source Tools",
+	             "Building Data Science Teams",
+	             "The Culture of Big Data ",
+	             "Too Big to Ignore",
+	             "The Signal and the Noise",
+	             "The Human Face of Big Data",
+	             "Data Science for Business",
+	             "The Black Swan",
+	             "Competing on Analytics",
+	             "Journeys to Data Mining",
+	             "The Fourth Paradigm: Data-Intensive Scientific Discovery",
+	             "Seven Databases in Seven Weeks",
+	             "A Statistical Guide for the Ethically Perplexed"];
+	
+	var scientists =["Isaac Newton",
+				"Albert Einstein",
+				"Neils Bohr",
+				"Charles Darwin",
+				"Louis Pasteur",
+				"Sigmund Freud",
+				"Galileo Galilei",
+				"Antoine Laurent Lavoisier",
+				"Johannes Kepler",
+				"Nicolaus Copernicus",
+				"Michael Faraday",
+				"James Clerk Maxwell",
+				"Claude Bernard",
+				"Franz Boas",
+				"Werner Heisenberg",
+				"Linus Pauling",
+				"Rudolf Virchow",
+				"Erwin Schrodinger",
+				"Ernest Rutherford",
+				"Paul Dirac",
+				"Andreas Vesalius",
+				"Tycho Brahe",
+				"Comte de Buffon",
+				"Ludwig Boltzmann",
+				"Max Planck",
+				"Marie Curie",
+				"William Herschel",
+				"Charles Lyell",
+				"Pierre Simon de Laplace",
+				"Edwin Hubble",
+				"Joseph J. Thomson",
+				"Max Born",
+				"Francis Crick",
+				"Enrico Fermi",
+				"Leonard Euler",
+				"Justus Liebig",
+				"Arthur Eddington",
+				"William Harvey",
+				"Marcello Malpighi",
+				"Christiaan Huygens",
+				"Carl Gauss (Karl Friedrich Gauss)",
+				"Albrecht von Haller",
+				"August Kekule",
+				"Robert Koch",
+				"Murray Gell-Mann",
+				"Emil Fischer",
+				"Dmitri Mendeleev",
+				"Sheldon Glashow",
+				"James Watson",
+				"John Bardeen",
+				"John von Neumann",
+				"Richard Feynman",
+				"Alfred Wegener",
+				"Stephen Hawking",
+				"Anton van Leeuwenhoek",
+				"Max von Laue",
+				"Gustav Kirchhoff",
+				"Hans Bethe",
+				"Euclid",
+				"Gregor Mendel",
+				"Heike Kamerlingh Onnes",
+				"Thomas Hunt Morgan",
+				"Hermann von Helmholtz",
+				"Paul Ehrlich",
+				"Ernst Mayr",
+				"Charles Sherrington",
+				"Theodosius Dobzhansky",
+				"Max Delbruck",
+				"Jean Baptiste Lamarck",
+				"William Bayliss",
+				"Noam Chomsky",
+				"Frederick Sanger",
+				"Lucretius",
+				"John Dalton",
+				"Louis Victor de Broglie",
+				"Carl Linnaeus",
+				"Jean Piaget",
+				"George Gaylord Simpson",
+				"Claude Levi-Strauss",
+				"Lynn Margulis",
+				"Karl Landsteiner",
+				"Konrad Lorenz",
+				"Edward O. Wilson",
+				"Frederick Gowland Hopkins",
+				"Gertrude Belle Elion",
+				"Hans Selye",
+				"J. Robert Oppenheimer",
+				"Edward Teller",
+				"Willard Libby",
+				"Ernst Haeckel",
+				"Jonas Salk",
+				"Emil Kraepelin",
+				"Trofim Lysenko",
+				"Francis Galton",
+				"Alfred Binet",
+				"Alfred Kinsey",
+				"Alexander Fleming",
+				"B. F. Skinner",
+				"Wilhelm Wundt",
+				"Archimedes"];
+	
+	var enteredValue= document.getElementById("search").value.toLowerCase();
+	
+if(enteredValue.length<=0)
+	{
+	document.getElementById("result").style.visibility="hidden";
+	}
+else{
+		if(booklistRadio.toString().indexOf("true")!=-1)
+		{
+			populateOptions(books,enteredValue);
+		}
+	else if(famousScientistRadio.toString().indexOf("true")!=-1)
+		{		
+			populateOptions(scientists,enteredValue);
+		}
+	}
+}
+
+function populateOptions(arrayName,enteredValue)
+{
+	var index;
+	var finalResult=[];
+	var i=0;
+
+	for(index=0;index<arrayName.length;index++)
+		{
+		var indexVal = arrayName[index];
+		indexVal =indexVal.toLowerCase();
+		
+		var n= indexVal.indexOf(enteredValue);
+		if(n!=-1)
+			{
+			finalResult[i]=arrayName[index];//indexVal;//add matching values ot array
+			i++;
+			}
+		else{}
+		}
+		for(i=0;i<finalResult.length;i++)
+			{
+			var select = document.getElementById("result");
+			var option = document.createElement("option");
+		    option.text = finalResult[i];
+		    select.add(option);
+			//document.getElementById("result").innerHTML+=finalResult[i];
+			//document.getElementById("result").innerHTML+="<br/>";
+			}
+		document.getElementById("result").style.visibility="visible";	
+}
+
+function selectValue(i)
+{
+	var selectedValue= document.getElementById("result");
+	document.getElementById("search").value = selectedValue.options[i].value;
+	selectedValue.style.visibility="hidden";
+}
+
+</script>
+</body>
+</html>
